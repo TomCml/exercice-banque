@@ -7,8 +7,26 @@ export class Account {
     return this.balance;
   }
 
-  setBalance(balance: number): void {
-    this.balance = balance;
+  withdraw(withdraw: number): number {
+    const balance = this.balance;
+    if (balance < withdraw) {
+      console.log("Not enough money");
+      return balance;
+    }
+    const newBalance = balance - withdraw;
+    this.balance = newBalance;
+    console.log("New balance: " + this.balance);
+    return this.balance;
+
+  }
+
+  deposit(deposit: number): number {
+    const balance = this.balance;
+    console.log("Old balance: " + balance);
+    const newBalance = balance + deposit;
+    this.balance = newBalance;
+    console.log("New balance: " + this.balance);
+    return this.balance;
   }
 }
 

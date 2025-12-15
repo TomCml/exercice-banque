@@ -1,31 +1,26 @@
 import { Account } from "./Account";
+import { Card } from "./Card";
 
 export class Client {
   constructor(
-    private name: string,
-    private surname: string,
-    private city: string,
-    private salary: number,
-    private account: Account
+    public name: string,
+    public surname: string,
+    public city: string,
+    public salary: number,
+    public account: Account,
+    public card : Card | undefined
   ) {}
 
+  setCard(card: Card): void {
+    this.card = card;
+  }
+
   withdraw(withdraw: number): void {
-    const balance = this.account.getBalance();
-    if (balance < withdraw) {
-      console.log("Not enough money");
-      return;
-    }
-    const newBalance = balance - withdraw;
-    console.log("New balance: " + newBalance);
-    return this.account.setBalance(newBalance);
+    this.account.withdraw(withdraw);
   }
 
   deposit(deposit: number): void {
-    const balance = this.account.getBalance();
-    console.log("Old balance: " + balance);
-    const newBalance = balance + deposit;
-    console.log("New balance: " + newBalance);
-    return this.account.setBalance(newBalance);
+    this.account.deposit(deposit);
   }
 
   readAccount(): void {
